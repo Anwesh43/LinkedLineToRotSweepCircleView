@@ -208,4 +208,13 @@ class LineToRotSweepCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineToRotSweepCircleView {
+            val view : LineToRotSweepCircleView = LineToRotSweepCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
