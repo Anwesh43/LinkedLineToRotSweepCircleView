@@ -167,7 +167,7 @@ class LineToRotSweepCircleView(ctx : Context) : View(ctx) {
         private var dir : Int = 1
 
         fun draw(canvas : Canvas, paint : Paint) {
-            curr.draw(canvas)
+            curr.draw(canvas, paint)
         }
 
         fun update(cb : (Float) -> Unit) {
@@ -181,6 +181,29 @@ class LineToRotSweepCircleView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineToRotSweepCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrts : LineToRotSweep = LineToRotSweep(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrts.draw(canvas, paint)
+            animator.animate {
+                lrts.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrts.startUpdating {
+                animator.start()
+            }
         }
     }
 }
