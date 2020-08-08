@@ -13,7 +13,7 @@ import android.graphics.Color
 import android.graphics.Canvas
 import android.graphics.RectF
 
-val colors : Array<String> = arrayOf("", "", "", "", "")
+val colors : Array<String> = arrayOf("#ff0341", "#31de12", "#54981f", "#aecd12", "#15aeff")
 val sizeFactor : Float = 5.8f
 val strokeFactor : Float = 90f
 val delay : Long = 20
@@ -22,7 +22,7 @@ val parts : Int = 4
 val lineDeg : Float = 90f
 val sweepDeg : Float = 360f
 val startDeg : Float = -90f
-val scGap : Float = 0.02f
+val scGap : Float = 0.02f/ parts
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
